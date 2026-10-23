@@ -1,2 +1,2 @@
 # ruang-kopi
-edukasi tentang pekopian
+edukasi tentang perkopian
