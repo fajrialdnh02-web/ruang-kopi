@@ -1,159 +1,234 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f7f2e9">
+<meta name="theme-color" content="#1b130e">
 <meta name="description" content="Ruang Kopi: kenali biji kopi, metode pengolahan, resep minuman, dan temukan kopi favoritmu.">
 <title>Ruang Kopi — Temukan Cerita di Setiap Cangkir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
- --bg:#f7f2e9;--paper:#fffdf9;--ink:#39291f;
- --brown:#62432f;--gold:#b88b5a;--muted:#827466;
- --line:#e8dfd2;--soft:#eee4d6;
+:root{
+ --espresso:#1b130e;--roast:#2a1d15;--paper:#f4ede2;--card:#fbf7f0;
+ --ink:#2b1f17;--brass:#c8a26b;--brass-d:#8f6a37;--muted:#7a6b5d;--line:#ddd1bf;
+ --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.7}
+html,body{max-width:100%;overflow-x:clip}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-button,input{font:inherit}
+button,select{font:inherit}
 button{cursor:pointer}
 img{display:block;width:100%;object-fit:cover}
-.wrap{width:min(1100px,90%);margin:auto}
-nav{position:sticky;top:0;z-index:10;background:#f7f2e9ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700}
-.logo span,.accent{color:var(--gold)}
-.links{display:flex;gap:20px;font-size:12px;color:var(--muted)}
-.links a:hover{color:var(--brown)}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;padding:65px 0}
-.eyebrow{color:var(--gold);font-size:10px;letter-spacing:2.5px;font-weight:700}
-h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500;line-height:1.25}
-h1{font-size:clamp(40px,5.5vw,68px);margin:15px 0}
-h1 em{color:var(--brown)}
-h2{font-size:clamp(29px,4vw,42px);margin:9px 0}
-h3{font-size:22px;margin:8px 0}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.wrap{width:min(1120px,90%);margin:auto}
+h1,h2,h3,blockquote,.logo{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(46px,7vw,86px);margin:0 0 22px;font-weight:500}
+h1 em{font-weight:400;color:var(--brass)}
+h2{font-size:clamp(34px,4.6vw,52px);margin:0 0 12px}
+h3{font-size:26px;margin:6px 0 8px}
 p{margin-top:0}
-.lead{font-size:14px;color:var(--muted);max-width:440px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
-.btn{border:1px solid var(--brown);background:transparent;color:var(--brown);padding:11px 16px;border-radius:4px;font-size:12px;display:inline-block;transition:.2s}
-.btn.primary{background:var(--brown);color:white}
-.btn:hover{transform:translateY(-2px);opacity:.85}
-.hero-photo{position:relative}
-.hero-photo img{height:410px;border-radius:150px 150px 8px 8px}
-.photo-note{position:absolute;bottom:14px;left:14px;background:var(--paper);padding:10px 13px;border-radius:4px;font-size:11px}
-.strip{border-block:1px solid var(--line);padding:18px 0;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
-.strip b{color:var(--brown)}
-section{padding:72px 0}
-.section-head{text-align:center;max-width:650px;margin:0 auto 32px}
-.section-head p{font-size:13px;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
-.card,.drink{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:.25s}
-.card:hover,.drink:hover{transform:translateY(-4px);box-shadow:0 10px 25px #39291f12}
-.card img{height:155px}
-.card-body{padding:15px}
-.tag{color:var(--gold);font-size:10px;letter-spacing:1px;font-weight:700}
-.card p,.drink p{font-size:12px;color:var(--muted);margin-bottom:0}
-.soft-section{background:var(--soft)}
-.process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.process{background:var(--paper);padding:20px;border-radius:7px;border:1px solid #e4d8c8}
-.process .num{color:var(--gold);font-size:11px;font-weight:700}
-.process p{font-size:12px;color:var(--muted);margin-bottom:0}
-.tip{margin-top:17px;background:var(--brown);color:#fff7ec;padding:22px;border-radius:7px}
-.tip p{font-size:13px;color:#e7d8c6;margin-bottom:0}
-.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:20px 0 25px}
-.filter{border:1px solid var(--line);border-radius:30px;padding:8px 14px;background:var(--paper);color:var(--brown);font-size:12px}
-.filter.active,.filter:hover{background:var(--brown);color:white;border-color:var(--brown)}
-.drinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.drink img{height:200px}
-.drink-body{padding:16px}
-.drink .taste{display:inline-block;margin-top:12px;color:var(--brown);background:var(--soft);border-radius:20px;padding:4px 9px;font-size:10px}
-.empty{text-align:center;color:var(--muted);padding:25px;display:none}
-.quiz{max-width:700px;margin:auto;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:28px}
-.quiz label{display:block;font-size:13px;font-weight:600;margin:18px 0 8px}
-.quiz select{width:100%;padding:12px;border:1px solid var(--line);background:white;color:var(--ink);border-radius:5px}
-.result{margin-top:18px;padding:17px;background:var(--soft);border-radius:7px;display:none}
-.result strong{font-family:'Playfair Display',serif;font-size:23px}
-.result p{font-size:13px;color:var(--muted);margin:5px 0 0}
-.quote{text-align:center;background:var(--paper);padding:55px 20px;border-block:1px solid var(--line)}
-blockquote{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);max-width:750px;margin:17px auto}
-footer{padding:27px 0}
+.kicker{color:var(--brass-d);font-style:italic;font-family:var(--serif);font-size:18px}
+.dark .kicker,.hero .kicker{color:var(--brass)}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:20;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.solid{background:#1b130ef0;backdrop-filter:blur(12px);border-color:#ffffff14}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:28px;color:#f4ede2}
+.logo span{color:var(--brass)}
+.links{display:flex;gap:30px;font-size:14px;color:#d9ccba}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--brass);transition:width .3s}
+.links a:hover{color:#fff}.links a:hover::after{width:100%}
+
+.wide{margin:0 0 56px;height:360px;overflow:hidden;background:var(--roast)}
+.wide img{height:100%}
+/* mobile menu button */
+.menu-btn{display:none;width:44px;height:44px;background:none;border:0;position:relative;padding:0}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{position:absolute;height:1.5px;background:#f4ede2;transition:.25s}
+.menu-btn span{left:11px;right:11px;top:21px}
+.menu-btn span::before,.menu-btn span::after{content:"";left:0;right:0}
+.menu-btn span::before{top:-7px}.menu-btn span::after{top:7px}
+.menu-btn[aria-expanded=true] span{background:transparent}
+.menu-btn[aria-expanded=true] span::before{top:0;transform:rotate(45deg)}
+.menu-btn[aria-expanded=true] span::after{top:0;transform:rotate(-45deg)}
+nav.open{background:#1b130ef8;backdrop-filter:blur(12px)}
+
+/* hero */
+.hero{background:radial-gradient(900px 500px at 80% 30%,#3a2819 0,transparent 70%),var(--espresso);color:#f4ede2;padding:150px 0 90px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.lead{font-size:17px;font-weight:300;color:#cdbfad;max-width:470px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-block;border:1px solid var(--brass);color:var(--brass);padding:13px 26px;border-radius:2px;font-size:14px;font-weight:500;letter-spacing:.4px;transition:background .25s,color .25s,transform .25s}
+.btn:hover{background:var(--brass);color:var(--espresso);transform:translateY(-2px)}
+.btn.primary{background:var(--brass);color:var(--espresso)}
+.btn.primary:hover{background:#d8b57f}
+.hero-photo{position:relative;margin:0 0 22px 22px}
+.hero-photo::before{content:"";position:absolute;inset:22px -22px -22px 22px;border:1px solid var(--brass);border-radius:220px 220px 4px 4px;opacity:.55}
+.hero-photo img{position:relative;height:540px;border-radius:220px 220px 4px 4px}
+.photo-note{position:absolute;bottom:22px;left:-22px;background:var(--paper);color:var(--ink);padding:12px 18px;font-family:var(--serif);font-style:italic;font-size:18px;z-index:2}
+.rise{opacity:0;transform:translateY(18px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.rise.d1{animation-delay:.15s}.rise.d2{animation-delay:.3s}.rise.d3{animation-delay:.45s}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.strip{background:var(--roast);color:#cdbfad;font-size:14px}
+.strip .wrap{display:flex;justify-content:space-between;gap:12px 30px;flex-wrap:wrap;padding:20px 0}
+.strip b{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--brass);margin-right:8px}
+
+section{padding:110px 0}
+.section-head{max-width:620px;margin:0 0 54px}
+.section-head p{color:var(--muted);font-size:16px;margin:0}
+.dark .section-head p{color:#b9ab98}
+
+/* varieties */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.thumb{position:relative;overflow:hidden;background:linear-gradient(135deg,#3a2819,#1b130e)}
+.thumb img{position:relative}
+.band{background:linear-gradient(rgba(27,19,14,.84),rgba(27,19,14,.92)),url(https://images.unsplash.com/photo-1703646615591-7a5deb4276ea?auto=format&fit=crop&w=1600&q=70) center/cover,var(--espresso)}
+.card img{height:240px;transition:transform .7s ease}
+.card:hover img{transform:scale(1.06)}
+.card-body{padding:22px 4px 0}
+.tag{color:var(--brass-d);font-style:italic;font-family:var(--serif);font-size:16px}
+.card p,.drink p{font-size:15px;color:var(--muted);margin:0}
+.card h3{border-top:1px solid var(--line);padding-top:12px;margin-top:8px}
+
+/* process */
+.dark{background:var(--espresso);color:#f4ede2}
+.process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #ffffff22}
+.process{padding:30px 28px 10px 0}
+.process+.process{padding-left:28px;border-left:1px solid #ffffff1a}
+.num{color:var(--brass);font-family:var(--serif);font-style:italic;font-size:19px}
+.process p{font-size:15px;color:#b9ab98;margin:0}
+.tip{margin-top:60px;border-left:2px solid var(--brass);padding:6px 0 6px 28px;max-width:720px}
+.tip h3{font-size:clamp(26px,3.4vw,36px);font-weight:400}
+.tip p{color:#b9ab98;margin:0}
+
+/* menu */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.filter{border:1px solid var(--line);background:transparent;color:var(--ink);padding:9px 20px;border-radius:40px;font-size:14px;transition:.25s}
+.filter:hover{border-color:var(--brass-d)}
+.filter.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.drinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 26px}
+.drink img{height:280px;transition:transform .7s ease}
+.drink:hover img{transform:scale(1.05)}
+.drink-body{padding:20px 0 0}
+.drink h3{margin-top:0}
+.taste{display:inline-block;margin-top:14px;color:var(--brass-d);font-family:var(--serif);font-style:italic;font-size:17px}
+.empty{text-align:center;color:var(--muted);padding:30px;display:none}
+
+/* quiz */
+.quiz-sec{background:var(--card);border-block:1px solid var(--line)}
+.quiz{max-width:640px;margin:auto}
+.quiz-sec .section-head{text-align:center;margin-inline:auto}
+.quiz label{display:block;font-size:15px;font-weight:500;margin:24px 0 8px}
+.quiz select{width:100%;padding:14px 16px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:2px;font-size:15px}
+.quiz .btn{margin-top:28px;width:100%;border-radius:2px;padding:15px}
+.result{margin-top:24px;padding:24px;background:var(--espresso);color:#f4ede2;display:none;animation:fade .6s ease both}
+.result strong{font-family:var(--serif);font-size:32px;font-weight:500;color:var(--brass)}
+.result p{font-size:15px;color:#cdbfad;margin:6px 0 0}
+
+/* quote + footer */
+.quote{text-align:center;padding:120px 0}
+blockquote{font-size:clamp(30px,5vw,56px);font-style:italic;font-weight:400;max-width:860px;margin:20px auto}
+.quote p{color:#b9ab98;font-size:15px}
+footer{background:var(--roast);padding:36px 0;color:#b9ab98}
 .footer{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-footer p{font-size:11px;color:var(--muted);margin:0}
-.reveal{animation:rise .7s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:760px){
- .nav{min-height:62px}.logo{font-size:20px}.links{gap:10px;font-size:10px}
- .hero{grid-template-columns:1fr;gap:25px;padding:42px 0}
- .hero-photo img{height:320px;border-radius:110px 110px 8px 8px}
- .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
- .card img{height:140px}.card-body{padding:12px}
- .process-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .process{padding:15px}.drinks{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
- .drink img{height:145px}.drink-body{padding:12px}
- section{padding:55px 0}.quiz{padding:19px}
+footer p{font-size:14px;margin:0}
+
+@media(max-width:900px){
+ .hero{padding:120px 0 70px}
+ .hero-grid{grid-template-columns:1fr;gap:50px}
+ .hero-photo{margin:0 22px 22px 0;max-width:420px}
+ .hero-photo img{height:420px}
+ .cards,.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .process-grid{border-top:0;column-gap:32px}.process,.process+.process{padding:24px 0 12px;border-left:0;border-top:1px solid #ffffff22}
+ .photo-note{left:14px;bottom:36px}
+ .drinks{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media(max-width:380px){
- .links{gap:7px}.links a{font-size:9px}
+@media(max-width:700px){
+ .menu-btn{display:block}
+ .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#1b130ef8;padding:6px 5% 18px;font-size:17px}
+ .links.open{display:flex}
+ .links a{padding:13px 0;border-bottom:1px solid #ffffff14}
+ .links a::after{display:none}
+}
+@media(max-width:600px){
+ .nav{min-height:64px}.logo{font-size:23px}
+ section{padding:76px 0}
+ .wide{height:220px;margin-bottom:36px}
+ .section-head{margin-bottom:38px}
+ .cards,.drinks{gap:22px 14px}
+ .card img{height:170px}.drink img{height:190px}
+ h3{font-size:22px}.card p,.drink p{font-size:14px}
+ .strip .wrap{flex-direction:column;gap:2px}
+ .quote{padding:80px 0}
+}
+@media(max-width:400px){
  .cards,.drinks,.process-grid{grid-template-columns:1fr}
- .card img,.drink img{height:210px}
+ .card img,.drink img{height:230px}
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rise{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<nav>
+<nav id="nav">
  <div class="wrap nav">
   <a class="logo" href="#home">Ruang Kopi<span>.</span></a>
-  <div class="links"><a href="#jenis">Jenis</a><a href="#proses">Proses</a><a href="#menu">Minuman</a><a href="#quiz">Cari Kopi</a></div>
+  <button class="menu-btn" id="menu-btn" aria-label="Buka menu" aria-expanded="false" aria-controls="links"><span></span></button>
+  <div class="links" id="links"><a href="#jenis">Jenis</a><a href="#proses">Proses</a><a href="#menu">Minuman</a><a href="#quiz">Cari Kopi</a></div>
  </div>
 </nav>
 <main>
- <div class="wrap hero" id="home">
-  <div class="reveal">
-   <div class="eyebrow">SEBUAH PERJALANAN RASA</div>
-   <h1>Temukan rasa,<br>nikmati <em>ceritanya.</em></h1>
-   <p class="lead">Dari biji yang tumbuh di tanah pilihan hingga aroma yang memenuhi cangkir. Jelajahi dunia kopi, pelajari prosesnya, dan temukan racikan favoritmu.</p>
-   <div class="actions"><a class="btn primary" href="#jenis">Jelajahi dunia kopi </a><a class="btn" href="#quiz">Temukan kopi favorit</a></div>
+ <header class="hero" id="home">
+  <div class="wrap hero-grid">
+   <div>
+    <div class="kicker rise">Sebuah perjalanan rasa</div>
+    <h1 class="rise d1">Temukan rasa,<br><em>nikmati ceritanya.</em></h1>
+    <p class="lead rise d2">Dari biji yang tumbuh di tanah pilihan hingga aroma yang memenuhi cangkir. Jelajahi dunia kopi, pelajari prosesnya, dan temukan racikan favoritmu.</p>
+    <div class="actions rise d3"><a class="btn primary" href="#jenis">Jelajahi dunia kopi</a><a class="btn" href="#quiz">Temukan kopi favorit</a></div>
+   </div>
+   <div class="hero-photo rise d2">
+    <img src="https://images.unsplash.com/photo-1502462041640-b3d7e50d0662?auto=format&fit=crop&w=1000&q=80" alt="Latte art dalam cangkir cokelat">
+    <div class="photo-note">Pelan-pelan, nikmati setiap tegukan.</div>
+   </div>
   </div>
-  <div class="hero-photo">
-   <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=85" alt="Suasana kopi hangat di pagi hari">
-   <div class="photo-note">☕ Pelan-pelan, nikmati setiap tegukan.</div>
-  </div>
- </div>
- <div class="wrap strip"><span><b>01</b> Kenali bijinya</span><span><b>02</b> Pahami prosesnya</span><span><b>03</b> Temukan favoritmu</span></div>
+ </header>
+ <div class="strip"><div class="wrap"><span><b>I</b>Kenali bijinya</span><span><b>II</b>Pahami prosesnya</span><span><b>III</b>Temukan favoritmu</span></div></div>
 
  <section id="jenis">
   <div class="wrap">
-   <div class="section-head"><div class="eyebrow">COFFEE BEANS</div><h2>Setiap biji punya karakter.</h2><p>Kenali varietas kopi dan ciri rasa yang membuat setiap cangkir terasa berbeda.</p></div>
+   <div class="section-head"><div class="kicker">Biji kopi</div><h2>Setiap biji punya karakter.</h2><p>Kenali varietas kopi dan ciri rasa yang membuat setiap cangkir terasa berbeda.</p></div>
    <div class="cards">
-    <article class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=600&q=80" alt="Biji kopi"><div class="card-body"><span class="tag">01 · VARIETAS</span><h3>Arabika</h3><p>Memiliki aroma beragam, rasa kompleks, serta karakter asam yang bisa mengingatkan pada buah atau bunga.</p></div></article>
-    <article class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=600&q=80" alt="Kopi Robusta"><div class="card-body"><span class="tag">02 · VARIETAS</span><h3>Robusta</h3><p>Cenderung kuat, pahit, dan berbodi tebal. Kandungan kafeinnya umumnya lebih tinggi daripada Arabika.</p></div></article>
-    <article class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=600&q=80" alt="Biji kopi pilihan"><div class="card-body"><span class="tag">03 · VARIETAS</span><h3>Liberika</h3><p>Dikenal dengan aroma khas dan profil rasa unik. Jenis ini juga dibudidayakan di beberapa daerah Indonesia.</p></div></article>
-    <article class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=600&q=80" alt="Kopi spesialti"><div class="card-body"><span class="tag">04 · VARIETAS</span><h3>Excelsa</h3><p>Sering memiliki karakter buah yang khas dan secara botani kini digolongkan dalam kelompok Liberika.</p></div></article>
+    <article class="card"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1703646615591-7a5deb4276ea?auto=format&fit=crop&w=650&q=80" alt="Tumpukan biji kopi sangrai"></div><div class="card-body"><span class="tag">Varietas pertama</span><h3>Arabika</h3><p>Memiliki aroma beragam, rasa kompleks, serta karakter asam yang bisa mengingatkan pada buah atau bunga.</p></div></article>
+    <article class="card"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1680338703568-fc868bef34da?auto=format&fit=crop&w=650&q=80" alt="Biji kopi dari dekat"></div><div class="card-body"><span class="tag">Varietas kedua</span><h3>Robusta</h3><p>Cenderung kuat, pahit, dan berbodi tebal. Kandungan kafeinnya umumnya lebih tinggi daripada Arabika.</p></div></article>
+    <article class="card"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1703646618632-5eeb27fc6734?auto=format&fit=crop&w=650&q=80" alt="Biji kopi hijau yang belum disangrai"></div><div class="card-body"><span class="tag">Varietas ketiga</span><h3>Liberika</h3><p>Dikenal dengan aroma khas dan profil rasa unik. Jenis ini juga dibudidayakan di beberapa daerah Indonesia.</p></div></article>
+    <article class="card"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1743356629215-abb470447e71?auto=format&fit=crop&w=650&q=80" alt="Biji kopi sangrai dalam mangkuk"></div><div class="card-body"><span class="tag">Varietas keempat</span><h3>Excelsa</h3><p>Sering memiliki karakter buah yang khas dan secara botani kini digolongkan dalam kelompok Liberika.</p></div></article>
    </div>
   </div>
  </section>
 
- <section class="soft-section" id="proses">
+ <section class="dark" id="proses">
   <div class="wrap">
-   <div class="section-head"><div class="eyebrow">FROM FARM TO CUP</div><h2>Proses membentuk rasa.</h2><p>Perjalanan setelah panen ikut menentukan karakter rasa dan aroma kopi.</p></div>
+   <div class="section-head"><div class="kicker">Dari kebun ke cangkir</div><h2>Proses membentuk rasa.</h2><p>Perjalanan setelah panen ikut menentukan karakter rasa dan aroma kopi.</p></div>
+   <figure class="wide"><img loading="lazy" src="https://images.unsplash.com/photo-1652211850780-2d86b8336169?auto=format&fit=crop&w=1400&q=80" alt="Biji kopi sedang disangrai"></figure>
    <div class="process-grid">
-    <article class="process"><span class="num">01 — NATURAL</span><h3>Dikeringkan utuh</h3><p>Buah kopi dikeringkan bersama bijinya. Dapat menonjolkan karakter buah dan rasa manis.</p></article>
-    <article class="process"><span class="num">02 — WASHED</span><h3>Bersih dan terang</h3><p>Daging buah dan lendir dibersihkan sebelum pengeringan. Hasilnya sering terasa lebih jernih.</p></article>
-    <article class="process"><span class="num">03 — HONEY</span><h3>Manis yang khas</h3><p>Sebagian lendir buah tetap menempel saat pengeringan, menghasilkan karakter yang bervariasi.</p></article>
-    <article class="process"><span class="num">04 — ROASTING</span><h3>Sangrai biji</h3><p>Penyangraian mengembangkan aroma. Sangrai ringan, sedang, dan gelap memberi hasil berbeda.</p></article>
+    <article class="process"><span class="num">Natural</span><h3>Dikeringkan utuh</h3><p>Buah kopi dikeringkan bersama bijinya. Dapat menonjolkan karakter buah dan rasa manis.</p></article>
+    <article class="process"><span class="num">Washed</span><h3>Bersih dan terang</h3><p>Daging buah dan lendir dibersihkan sebelum pengeringan. Hasilnya sering terasa lebih jernih.</p></article>
+    <article class="process"><span class="num">Honey</span><h3>Manis yang khas</h3><p>Sebagian lendir buah tetap menempel saat pengeringan, menghasilkan karakter yang bervariasi.</p></article>
+    <article class="process"><span class="num">Roasting</span><h3>Sangrai biji</h3><p>Penyangraian mengembangkan aroma. Sangrai ringan, sedang, dan gelap memberi hasil berbeda.</p></article>
    </div>
-   <div class="tip"><div class="eyebrow">TIPS KECIL</div><h3>Tak ada satu rasa terbaik untuk semua orang.</h3><p>Rasa kopi dipengaruhi varietas, tempat tumbuh, pengolahan, sangrai, dan cara menyeduh. Cobalah beberapa metode untuk menemukan yang cocok.</p></div>
+   <div class="tip"><div class="kicker">Tips kecil</div><h3>Tak ada satu rasa terbaik untuk semua orang.</h3><p>Rasa kopi dipengaruhi varietas, tempat tumbuh, pengolahan, sangrai, dan cara menyeduh. Cobalah beberapa metode untuk menemukan yang cocok.</p></div>
   </div>
  </section>
 
  <section id="menu">
   <div class="wrap">
-   <div class="section-head"><div class="eyebrow">COFFEE MENU</div><h2>Seni dalam setiap tegukan.</h2><p>Pilih kategori untuk menjelajahi minuman kopi berdasarkan cara penyajian.</p></div>
+   <div class="section-head"><div class="kicker">Menu kopi</div><h2>Seni dalam setiap tegukan.</h2><p>Pilih kategori untuk menjelajahi minuman kopi berdasarkan cara penyajian.</p></div>
    <div class="filters" aria-label="Filter kategori minuman">
     <button class="filter active" data-filter="semua">Semua</button>
     <button class="filter" data-filter="hitam">Kopi hitam</button>
@@ -161,21 +236,21 @@ footer p{font-size:11px;color:var(--muted);margin:0}
     <button class="filter" data-filter="dingin">Minuman dingin</button>
    </div>
    <div class="drinks">
-    <article class="drink" data-category="hitam"><img loading="lazy" src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=650&q=80" alt="Espresso"><div class="drink-body"><h3>Espresso</h3><p>Kopi pekat yang diseduh dengan air panas bertekanan. Menjadi dasar berbagai racikan.</p><span class="taste">Pekat · Intens</span></div></article>
-    <article class="drink" data-category="hitam"><img loading="lazy" src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=650&q=80" alt="Americano"><div class="drink-body"><h3>Americano</h3><p>Espresso yang ditambahkan air panas untuk rasa kopi yang lebih ringan.</p><span class="taste">Ringan · Aromatik</span></div></article>
-    <article class="drink" data-category="susu"><img loading="lazy" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=650&q=80" alt="Caffe latte"><div class="drink-body"><h3>Caffè Latte</h3><p>Espresso dengan susu panas dan lapisan busa tipis.</p><span class="taste">Lembut · Milky</span></div></article>
-    <article class="drink" data-category="susu"><img loading="lazy" src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=650&q=80" alt="Cappuccino"><div class="drink-body"><h3>Cappuccino</h3><p>Perpaduan espresso, susu panas, dan busa susu yang seimbang.</p><span class="taste">Seimbang · Creamy</span></div></article>
-    <article class="drink" data-category="susu"><img loading="lazy" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=650&q=80" alt="Mocha"><div class="drink-body"><h3>Mocha</h3><p>Kopi, susu, dan cokelat untuk rasa yang kaya dan manis.</p><span class="taste">Cokelat · Manis</span></div></article>
-    <article class="drink" data-category="dingin hitam"><img loading="lazy" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=650&q=80" alt="Cold brew"><div class="drink-body"><h3>Cold Brew</h3><p>Kopi yang diekstraksi dengan air dingin selama beberapa jam.</p><span class="taste">Segar · Halus</span></div></article>
-    <article class="drink" data-category="dingin susu"><img loading="lazy" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=650&q=80" alt="Es kopi susu"><div class="drink-body"><h3>Es Kopi Susu</h3><p>Kopi, susu, es, dan pemanis sesuai selera.</p><span class="taste">Manis · Creamy</span></div></article>
+    <article class="drink" data-category="hitam"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=650&q=80" alt="Espresso dalam gelas bening"></div><div class="drink-body"><h3>Espresso</h3><p>Kopi pekat yang diseduh dengan air panas bertekanan. Menjadi dasar berbagai racikan.</p><span class="taste">Pekat · Intens</span></div></article>
+    <article class="drink" data-category="hitam"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1551490434-bf8bc9eab4a9?auto=format&fit=crop&w=650&q=80" alt="Americano dalam cangkir keramik"></div><div class="drink-body"><h3>Americano</h3><p>Espresso yang ditambahkan air panas untuk rasa kopi yang lebih ringan.</p><span class="taste">Ringan · Aromatik</span></div></article>
+    <article class="drink" data-category="susu"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=650&q=80" alt="Caffè latte dengan latte art bentuk hati"></div><div class="drink-body"><h3>Caffè Latte</h3><p>Espresso dengan susu panas dan lapisan busa tipis.</p><span class="taste">Lembut · Milky</span></div></article>
+    <article class="drink" data-category="susu"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=650&q=80" alt="Cappuccino dalam cangkir"></div><div class="drink-body"><h3>Cappuccino</h3><p>Perpaduan espresso, susu panas, dan busa susu yang seimbang.</p><span class="taste">Seimbang · Creamy</span></div></article>
+    <article class="drink" data-category="susu"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=650&q=80" alt="Kopi cokelat dituang ke dalam mug putih"></div><div class="drink-body"><h3>Mocha</h3><p>Kopi, susu, dan cokelat untuk rasa yang kaya dan manis.</p><span class="taste">Cokelat · Manis</span></div></article>
+    <article class="drink" data-category="dingin hitam"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1527156231393-7023794f363c?auto=format&fit=crop&w=650&q=80" alt="Kopi dingin dalam gelas tinggi berisi es"></div><div class="drink-body"><h3>Cold Brew</h3><p>Kopi yang diekstraksi dengan air dingin selama beberapa jam.</p><span class="taste">Segar · Halus</span></div></article>
+    <article class="drink" data-category="dingin susu"><div class="thumb"><img loading="lazy" src="https://images.unsplash.com/photo-1562447457-579fc34967fb?auto=format&fit=crop&w=650&q=80" alt="Susu dituang ke dalam es kopi"></div><div class="drink-body"><h3>Es Kopi Susu</h3><p>Kopi, susu, es, dan pemanis sesuai selera.</p><span class="taste">Manis · Creamy</span></div></article>
    </div>
    <div class="empty" id="empty">Belum ada minuman dalam kategori ini.</div>
   </div>
  </section>
 
- <section class="soft-section" id="quiz">
+ <section class="quiz-sec" id="quiz">
   <div class="wrap">
-   <div class="section-head"><div class="eyebrow">COFFEE FINDER</div><h2>Kopi mana yang cocok buatmu?</h2><p>Jawab dua pertanyaan singkat untuk mendapatkan saran minuman sesuai selera.</p></div>
+   <div class="section-head"><div class="kicker">Pencari kopi</div><h2>Kopi mana yang cocok buatmu?</h2><p>Jawab dua pertanyaan singkat untuk mendapatkan saran minuman sesuai selera.</p></div>
    <div class="quiz">
     <label for="taste">Mas lebih suka rasa seperti apa?</label>
     <select id="taste">
@@ -190,25 +265,51 @@ footer p{font-size:11px;color:var(--muted);margin:0}
      <option value="hot">Hangat</option>
      <option value="cold">Dingin pakai es</option>
     </select>
-    <button class="btn primary" id="find" style="margin-top:20px;width:100%">Temukan kopi favoritku ↗</button>
+    <button class="btn primary" id="find">Temukan kopi favoritku</button>
     <div class="result" id="result" aria-live="polite"><strong id="result-title"></strong><p id="result-text"></p></div>
    </div>
   </div>
  </section>
 
- <section class="quote" id="cerita"><div class="wrap"><div class="eyebrow">SEBUAH CATATAN KECIL</div><blockquote>“Kadang, secangkir kopi mengajak kita berhenti sebentar dan menikmati hal-hal sederhana.”</blockquote><p style="color:var(--muted);font-size:12px">Selamat menjelajahi dunia kopi. ☕</p></div></section>
+ <section class="quote dark band" id="cerita"><div class="wrap"><div class="kicker">Sebuah catatan kecil</div><blockquote>“Kadang, secangkir kopi mengajak kita berhenti sebentar dan menikmati hal-hal sederhana.”</blockquote><p>Selamat menjelajahi dunia kopi.</p></div></section>
 </main>
 <footer><div class="wrap footer"><a class="logo" href="#home">Ruang Kopi<span>.</span></a><p>Belajar kopi, satu cangkir demi satu cangkir.</p><p>© 2026 Ruang Kopi</p></div></footer>
 
 <script>
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('solid', window.scrollY > 40);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+const menuBtn = document.getElementById('menu-btn');
+const links = document.getElementById('links');
+function setMenu(open) {
+ links.classList.toggle('open', open);
+ nav.classList.toggle('open', open);
+ menuBtn.setAttribute('aria-expanded', open);
+ menuBtn.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu');
+}
+menuBtn.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+window.addEventListener('resize', () => { if (window.innerWidth > 700) setMenu(false); });
+
+document.querySelectorAll('img').forEach(img => {
+ img.addEventListener('error', () => { img.style.visibility = 'hidden'; });
+ img.addEventListener('load', () => { img.style.visibility = ''; });
+ if (img.loading !== 'lazy' && img.complete && img.naturalWidth === 0) img.style.visibility = 'hidden';
+});
+
 const filterButtons = document.querySelectorAll('.filter');
 const drinkCards = document.querySelectorAll('.drink');
 const emptyMessage = document.getElementById('empty');
+filterButtons.forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active')));
 
 filterButtons.forEach(button => {
  button.addEventListener('click', () => {
-  filterButtons.forEach(item => item.classList.remove('active'));
+  filterButtons.forEach(item => { item.classList.remove('active'); item.setAttribute('aria-pressed', 'false'); });
   button.classList.add('active');
+  button.setAttribute('aria-pressed', 'true');
   const selected = button.dataset.filter;
   let count = 0;
   drinkCards.forEach(card => {
@@ -244,9 +345,12 @@ document.getElementById('find').addEventListener('click', () => {
  if (temp === 'hot' && title === 'Cold Brew pekat') title = 'Espresso';
  if (temp === 'cold' && title === 'Espresso') title = 'Cold Brew pekat';
 
+ const box = document.getElementById('result');
  document.getElementById('result-title').textContent = title;
  document.getElementById('result-text').textContent = description;
- document.getElementById('result').style.display = 'block';
+ box.style.display = 'none';
+ void box.offsetWidth;
+ box.style.display = 'block';
 });
 </script>
 </body>
